@@ -1,9 +1,9 @@
-from MachineLearningLayer.Utils.Forecaster import Forecaster
+from MachineLearningLayer.Utils.Forecast import Forecaster
 from MachineLearningLayer.Utils.Splitter import Splitter
 from DataTransportationLayer.DataServiceAPI import DataService
 import pandas as pd
 import warnings
-from LGBM import LGBMRegressor
+from LightGBM import LGBMRegressor
 from mlforecast import MLForecast
 from mlforecast.lag_transforms import RollingMean
 import os
