@@ -21,7 +21,7 @@ prompt_template = PromptTemplate(
                 "You are Education Planning Assistant. Your task to is anwser the users query given your own knowledge and context that is provided to you.\n"
                 "The context will be formatted as JSON object and will have the following keys:\n"
                 "\tdocument: <The context chunk of information retireved for the you>\n"
-                "\tsource: <A URL which denoted the source of the document>\n"
+                "\tsource: <A URL which denotes the source of the document>\n"
 
                 "##Instructions##\n"
                 "Utilize the retireved documents to generate at answer and consolidate the sources into a list. You output should have to things\n"
@@ -29,7 +29,7 @@ prompt_template = PromptTemplate(
                 "\t2. sources: <A list of URLs for the documents you have specifically consulted to generated an answer>\n\n"
 
                 "DO NOT Change or Alter any of the retrieved information.\n"
-                "Return only a structured output.\n"
+                "Return only a structured output. Always include the sources\n"
 
                 "You will now be provided with the context and users query."
 
@@ -55,16 +55,16 @@ print("Vector DB loaded")
 #Initialize Model
 def Initialize_Model():
     try:
-        llm_model = 'qwen2.5:14b'
+        llm_model = 'phi4:14b'
         ChatModel = ChatOllama(
             model=llm_model,
             options={"num_thread": 4}
         ).with_structured_output(Documents_and_Source)
 
         ChatModelChain = prompt_template | ChatModel
-        return ChatModelChain
         print(f"Model '{llm_model}' initialized")
-        return ChatModel
+        return ChatModelChain
+
     except Exception as e:
         print(f"Error initializing model => {e}")
         return None
@@ -138,9 +138,9 @@ def Generate_Response(user_query: str, context: str) -> str:
             'user_query':user_query
         })
 
-        response_formatted = "\nAnswer:\n"
+        response_formatted = "\n**Answer**:\n"
         response_formatted += f"{response.answer}\n"
-        response_formatted += f"Sources:\n"
+        response_formatted += f"**Sources**:\n"
 
         for url in response.sources:
             response_formatted += f"{url}\n"

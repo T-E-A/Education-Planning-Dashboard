@@ -106,6 +106,7 @@ layout = dbc.Container(
                     ),
                     width=3
                 ),
+
                 dbc.Col(
                     dbc.Button(
                         "Clear Chat",
@@ -125,7 +126,8 @@ layout = dbc.Container(
         ),
 
         # Hidden div to store chat history state
-        dcc.Store(id="chat-history-store", data=[])
+        dcc.Store(id="chat-history-store", data=[]),
+        dcc.Download(id="download-report")
 
     ],
     fluid=True,
@@ -180,6 +182,7 @@ def update_chat(n_clicks, user_input, stored_history):
 
 @callback(
     Output("save-status", "children"),
+    Output("download-report", "data"),
     Input("btn-save-chat", "n_clicks"),
     State("chat-history-store", "data"),
     prevent_initial_call=True
@@ -201,13 +204,23 @@ def save_chat_to_json(n_clicks, stored_history):
         # Save to JSON file
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(stored_history, f, indent=4, ensure_ascii=False)
+        
+        reportName = f'Reports/chat_history_{timestamp}.pdf'
+
             
         # Save to Application Layer for report generation
-        report_url = Send_Chat_To_Report_Generator(json.dumps(chat_history))
-        
-        return dbc.Alert(f"Chat saved successfully as {filename}!", color="success", duration=4000)
+        report_uri = Send_Chat_To_Report_Generator(stored_history, reportName=reportName)
+        print(f"Sending file for download.")
+        return (
+            dbc.Alert(
+                f"Chat saved successfully as {reportName}!",
+                color="success",
+                duration=4000
+            ),
+            
+            dcc.send_file(report_uri))
     
-    return ""
+    return "", dash.no_update
 
 
 @callback(
