@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 import os
 
-from UILayer.DashAppUtilities import Send_Query
+from UILayer.DashAppUtilities import Send_Query, Send_Chat_To_Report_Generator
 
 dash.register_page(
     __name__,
@@ -201,6 +201,9 @@ def save_chat_to_json(n_clicks, stored_history):
         # Save to JSON file
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(stored_history, f, indent=4, ensure_ascii=False)
+            
+        # Save to Application Layer for report generation
+        report_url = Send_Chat_To_Report_Generator(json.dumps(chat_history))
         
         return dbc.Alert(f"Chat saved successfully as {filename}!", color="success", duration=4000)
     

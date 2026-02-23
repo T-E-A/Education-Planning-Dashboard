@@ -1,7 +1,7 @@
 #By: Tejas Kumar
 #Integrating Application Layer Utilities for usage. 
 
-from ApplicationLayer.LogicalOperations import DataUtils, GraphUtils, OptionsUtils, DataTableUtils
+from ApplicationLayer.LogicalOperations import DataUtils, GraphUtils, OptionsUtils, DataTableUtils, ReportGenerator
 import requests
 import pandas as pd
 
@@ -189,3 +189,22 @@ def Generate_Forecast_Analysis(provinceid: int, noc_groupingid : int):
 
 
 #endregion 
+
+
+#region Functions for sending saved json chat history to the report generation module for analysis and insights extraction.
+
+def Send_Chat_To_Report_Generator(Chat_History_Json):
+
+    try:
+        payload = {
+            "chat_history": Chat_History_Json
+        }
+        response = ReportGenerator.generate_report(payload)
+        data = response.json()
+        report_url = data.get("report_url", None)
+        return report_url
+    except Exception as e:
+        print(f"Error sending chat history to Report Generator => {e}")
+        return None
+
+#endregion
