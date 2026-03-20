@@ -25,7 +25,8 @@ api_routes = {
     7: 'economicregion',
     8: 'province',
     9: 'university',
-    10: 'prediction_cache'
+    10: 'prediction_cache',
+    11: 'seasonal_decomposition'
 }
 
 # Instantiating a synchronous client with 120s timeout
@@ -231,6 +232,20 @@ def Request_All_Province_NOC_Forecast(noc_groupingid : int) -> pd.DataFrame:
         return pd.DataFrame()
 
 #endregion 
+
+#region Seasonal Decompostion Data Requests 
+def RequestionSeasonalDecomp(provinceid):
+    try:
+        url_to_call = f"{base_uri}{api_routes[11]}/?provinceid={provinceid}"
+        data = Make_Request(url=url_to_call)
+        return pd.DataFrame(data)
+
+    except Exception as e:
+        print(f"RequestSeasonalDecompo() => {e}")
+        return pd.DataFrame()
+
+
+#endregion
 
 #region Post Functions
 
