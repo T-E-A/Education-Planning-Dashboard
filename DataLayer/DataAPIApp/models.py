@@ -195,4 +195,23 @@ class PredictionCache(models.Model):
         db_table = 'Tbl_Temp_Forecasts'
 
 
+#region [Seasonal Decomposed Provinical Data]
+class SeasonalDecomposition(models.Model):
+    entryid = models.IntegerField(db_column='entryID', blank=False, null=False, primary_key=True)
+    datestamp = models.TextField(db_column='ds',blank=True, null=True)
+    provinceid = models.IntegerField(db_column='provinceID', blank=True, null=True)
+    province = models.TextField(db_column='province', blank=True, null=True)  # Field name made lowercase.
+    trend_cluster = models.IntegerField(db_column='Trend Cluster', blank=True, null=True)
+    noc_groupingid = models.IntegerField(db_column='noc_groupingid', blank=True, null=True)
+    noc_grouping = models.TextField(db_column='noc_grouping', blank=True, null=True)
+    observed = models.FloatField(db_column='observed', blank=True, null=True)
+    trend = models.FloatField(db_column='trend', blank=True, null=True)
+    resid = models.FloatField(db_column='resid', blank=True, null=True)
+    seasonal_3 = models.FloatField(db_column='seasonal_3', blank=True, null=True)
+    seasonal_6 = models.FloatField(db_column='seasonal_6', blank=True, null=True)
+    seasonal_12 = models.FloatField(db_column='seasonal_12', blank=True, null=True)
+
+    class Meta:
+        db_table= 'Tbl_Seasonal_Decomposition'
+#endregion 
 

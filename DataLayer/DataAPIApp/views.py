@@ -19,7 +19,8 @@ from .models import (
     Province,
     Provincial_NOC_Group_Labor_Statistic,
     University,
-    PredictionCache
+    PredictionCache,
+    SeasonalDecomposition
 )
 from .serializers import (
     Economic_Region_Employment_EstimateSerializer,
@@ -34,7 +35,8 @@ from .serializers import (
     ProvinceSerializer,
     Provincial_NOC_Group_Labor_StatisticSerializer,
     UniversitySerializer,
-    PredictionCacheSerializer
+    PredictionCacheSerializer,
+    SeasonalDecompositionSerializer
 )
 
 
@@ -135,3 +137,10 @@ class PredictionCacheViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class SeasonalDecompositionViewSet(viewsets.ModelViewSet):
+    queryset = SeasonalDecomposition.objects.all()
+    serializer_class = SeasonalDecompositionSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
+

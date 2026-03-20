@@ -16,7 +16,8 @@ from .models import (
     Province,
     Provincial_NOC_Group_Labor_Statistic,
     University,
-    PredictionCache
+    PredictionCache,
+    SeasonalDecomposition
 )
 
 #region Serializers 
@@ -94,5 +95,10 @@ class UniversitySerializer(serializers.ModelSerializer):
 class PredictionCacheSerializer(serializers.ModelSerializer):
     class Meta:
         model = PredictionCache
+        fields = '__all__'
+
+class SeasonalDecompositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SeasonalDecomposition
         fields = '__all__'
 #endregion 
