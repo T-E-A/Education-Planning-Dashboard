@@ -16,7 +16,7 @@ def Generate_Dash_Table(Col_Dict, data):
         'if': {
             'column_id': col
         },
-        'width': '300px'
+        'width': '250px'
         })
 
     
@@ -33,8 +33,15 @@ def Generate_Dash_Table(Col_Dict, data):
             'minWidth': '150px',
             'maxWidth': '150px',
             'width': '150px',
-        }
-    } # Add the conditional styling here
+        },
+        'style_header': {
+                'backgroundColor': '#2c3e50',  
+                'color': 'white',              
+                'fontWeight': 'bold',
+                'textAlign': 'right'
+            }
+
+    } 
     }
 
     del data

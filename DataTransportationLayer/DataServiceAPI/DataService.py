@@ -243,8 +243,6 @@ def RequestionSeasonalDecomp(provinceid):
     except Exception as e:
         print(f"RequestSeasonalDecompo() => {e}")
         return pd.DataFrame()
-
-
 #endregion
 
 #region Post Functions

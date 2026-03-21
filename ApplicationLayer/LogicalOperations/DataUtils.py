@@ -3,8 +3,14 @@
 
 from DataTransportationLayer.DataServiceAPI import DataService
 import pandas as pd 
+import polars as pl
 import numpy as np
+import calendar
 
+
+df_Decomp_Set = pd.DataFrame()
+dp_Decomp_Set = pl.from_pandas(df_Decomp_Set)
+dp_Filtered_Set = pl.DataFrame()
 
 Latest_KPI_Rename_Dict = {
     'employment_rate_2_years_after_graduating_field': '2020 Employment Rate 2 Years after Graduation',
@@ -190,5 +196,211 @@ def Get_NOC_Forecast_All_Provinces(noc_groupingid : int) -> pd.DataFrame:
 
     except Exception as e:
         print(f"Get_NOC_Forecast_All_Provinces(noc_groupingid : {noc_groupingid}) => {e}")
+        return pd.DataFrame()
+#endregion 
+
+
+#region Trend Analysis Pre-Processing 
+def Transform_Set(Data: pd.DataFrame):
+    try:
+        
+        Data['datestamp'] = pd.to_datetime(Data['datestamp'])
+        Data['Year'] = Data['datestamp'].dt.year
+        Data['Month_Num'] = Data['datestamp'].dt.month
+        Data['Month_Name'] = Data['datestamp'].dt.month_name()
+        Data['Quarter'] = Data['datestamp'].dt.quarter
+
+
+        return Data
+
+    except Exception as e:
+        print(f"Transform_Set() => {e}")
+        return Data
+
+def Set_Decomp_Set(provinceid):
+    try:
+        
+        global df_Decomp_Set
+        global dp_Decomp_Set
+
+        df_Decomp_Set = DataService.RequestionSeasonalDecomp(provinceid=provinceid)
+        df_Decomp_Set = Transform_Set(Data=df_Decomp_Set)
+        dp_Decomp_Set = pl.from_pandas(df_Decomp_Set)
+
+    except Exception as e:
+        print(f"Set_Decomp_Set(provinceid={provinceid}) => {e}")
+        return
+
+def Filter_Set():
+    try:
+        
+        global dp_Filtered_Set
+
+        dp_Filtered_Set = dp_Decomp_Set.filter((pl.col('Year')>= 2022) & (pl.col('Year')<= 2024))
+
+        
+
+    except Exception as e:
+        print(f"Filter_Set() => {e}")
+        return pl.DataFrame()
+
+def Generate_Cluster_Monthly_Comparison(month):
+    try:
+
+
+        
+        df_Comp = dp_Filtered_Set.filter(pl.col('Month_Num')==month).group_by('trend_cluster').agg(
+            pl.col('noc_groupingid').n_unique().alias('Number of NOC Groupings'),
+            (pl.col('seasonal_12').mean()*1000).round(3).alias(f'Average Trend for {calendar.month_name[month]}')
+        ).to_pandas().sort_values(by=f'Average Trend for {calendar.month_name[month]}', ascending=False).reset_index(drop=True)
+
+        df_Comp = df_Comp.rename(columns={'trend_cluster':'Cluster'})
+
+        coreCols = df_Comp.columns.tolist()
+        
+        conditions = [
+            df_Comp[f'Average Trend for {calendar.month_name[month]}'] > 0,
+            df_Comp[f'Average Trend for {calendar.month_name[month]}'] < 0,
+            df_Comp[f'Average Trend for {calendar.month_name[month]}'] == 0
+        ]
+        choices = ['Increase', 'Decrease', 'No Change']
+        df_Comp['Month Trend Segment'] = np.select(conditions, choices, default='No Data').astype(str)
+
+        
+
+
+
+        return df_Comp, coreCols
+
+    except Exception as e:
+        print(f"Generate_Cluster_Monthly_Comparison(month={month}) => {e}")
+        return pd.DataFrame(), []
+
+def Generate_Cluster_Quarterly_Comparison(quarter, corCols):
+    try:
+        
+        df_Comp = dp_Filtered_Set.filter(pl.col('Quarter')==quarter).group_by('trend_cluster').agg(
+            (pl.col('seasonal_3').mean()*1000).round(3).alias(f'Average Trend for Q{quarter}')
+        ).to_pandas().sort_values(by=f'Average Trend for Q{quarter}', ascending=False).reset_index(drop=True)
+        
+        corCols.append(f'Average Trend for Q{quarter}')
+        df_Comp = df_Comp.rename(columns={'trend_cluster':'Cluster'})
+
+        conditions = [
+            df_Comp[f'Average Trend for Q{quarter}'] > 0,
+            df_Comp[f'Average Trend for Q{quarter}'] < 0,
+            df_Comp[f'Average Trend for Q{quarter}'] == 0
+        ]
+        choices = ['Increase', 'Decrease', 'No Change']
+        df_Comp['Quarter Trend Segment'] = np.select(conditions, choices, default='No Data').astype(str)
+
+        return df_Comp
+
+
+
+    except Exception as e:
+        print(f"Generate_Cluster_Quarterly_Comparison(quarter={quarter}) => {e}")
+        return pd.DataFrame()
+
+def Generate_Processed_Data_Sets(provinceid, quarter, month):
+    try:
+        
+        Set_Decomp_Set(provinceid=provinceid)
+        Filter_Set()
+
+        df_Montly_Comp, corCols = Generate_Cluster_Monthly_Comparison(month=month)
+        df_Quarterly_Comp = Generate_Cluster_Quarterly_Comparison(quarter=quarter, corCols=corCols)
+
+        # print(f"Monthly Comp =>\n{df_Montly_Comp}")
+        # print(f"Quarterly Comp =>\n{df_Quarterly_Comp}")
+
+        df_Combined_Analysis = df_Montly_Comp.merge(df_Quarterly_Comp, on=['Cluster'], how='inner')
+        df_Combined_Analysis['Cluster Name'] = df_Combined_Analysis['Cluster'].apply(lambda x: f"Cluster [{x}]")
+
+        df_Combined_Analysis = df_Combined_Analysis.sort_values(by=[f'Average Trend for Q{quarter}'], ascending=False)
+
+        # print(f"Combined =>\n{df_Combined_Analysis}")
+
+        ClusterID_ClusterName_Dict = df_Combined_Analysis.set_index('Cluster')['Cluster Name'].to_dict()
+
+        return df_Combined_Analysis, corCols, ClusterID_ClusterName_Dict
+
+    except Exception as e:
+        print(f"Generate_Processed_Data_Sets(provinceid={provinceid}, quarter={quarter}, month={month}) => {e}"), corCols, {}
+
+def Get_Cluster_Set(cluster):
+    try:
+        
+        Cluster_Sample = dp_Decomp_Set.filter((pl.col('trend_cluster')==cluster)
+                                              & (pl.col('Year') <= 2024)
+                                              & (pl.col('Year') >= 2022)
+                                              ).to_pandas().sort_values(by=['noc_groupingid','datestamp'], ascending=True)
+
+        print(Cluster_Sample)
+        return Cluster_Sample
+
+    except Exception as e:
+        print(f"Get_Cluster_Set(cluster={cluster})=> {e}")
+        return pd.DataFrame()
+
+def Get_NOC_Set(provinceid, noc_groupingid):
+    try:
+        df_Filtered = dp_Decomp_Set.filter((pl.col('provinceid')==provinceid) 
+                                   & (pl.col('noc_groupingid')==noc_groupingid)
+                                   & (pl.col('Year') <= 2024)
+                                   )
+        Set = df_Filtered.to_pandas().sort_values(by='datestamp', ascending=True)
+        
+        AnnualGrowth = df_Filtered.filter(pl.col('Year')>=2020).group_by(['Year']).agg(
+            (pl.col('seasonal_12').mean() * 1000).round(2).alias('Growth')
+        ).to_pandas().sort_values(by='Year', ascending=True)
+
+        MonthlyGrowth = df_Filtered.filter(pl.col('Year')>=2020).group_by(['Month_Num','Month_Name']).agg(
+            (pl.col('seasonal_12').mean() * 1000).round(2).alias('Growth')
+        ).to_pandas().sort_values(by='Month_Num', ascending=True)
+
+        QuarterlyGrowth = df_Filtered.filter(pl.col('Year')>=2020).group_by(['Quarter']).agg(
+            (pl.col('seasonal_12').mean() * 1000).round(2).alias('Growth')
+        ).to_pandas().sort_values(by='Quarter', ascending=True)
+
+        QuarterlyGrowth['Quarter_Name'] = QuarterlyGrowth['Quarter'].apply(lambda x: f"Q{x}")
+
+        choices = ['Increase', 'Decrease', 'No Change']
+        conditions_annual = [
+            AnnualGrowth['Growth'] > 0,
+            AnnualGrowth['Growth'] < 0,
+            AnnualGrowth['Growth'] == 0
+        ]
+
+        conditions_monthly = [
+             MonthlyGrowth['Growth'] > 0,
+             MonthlyGrowth['Growth'] < 0,
+             MonthlyGrowth['Growth'] == 0
+        ]
+
+        conditions_quarterly = [
+             QuarterlyGrowth['Growth'] > 0,
+             QuarterlyGrowth['Growth'] < 0,
+             QuarterlyGrowth['Growth'] == 0
+        ]
+
+
+        AnnualGrowth['Growth Segment'] = np.select(conditions_annual, choices, default='No Data').astype(str)
+        MonthlyGrowth['Growth Segment'] = np.select(conditions_monthly, choices, default='No Data').astype(str)
+        QuarterlyGrowth['Growth Segment'] = np.select(conditions_quarterly, choices, default='No Data').astype(str)
+
+        Payload = {
+            'Set': Set,
+            'Annual':AnnualGrowth,
+            'Monthly':MonthlyGrowth,
+            'Quart': QuarterlyGrowth
+        }
+
+
+        return Payload
+    
+
+    except Exception as e:
+        print(f"Get_NOC_Set(provinceid={provinceid}, noc_groupingid={noc_groupingid})")
         return pd.DataFrame()
 #endregion 
