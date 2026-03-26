@@ -1,4 +1,0 @@
-Open CMD Terminal and navigate to this folder and run the following command. 
-uvicorn RAG_API:app --reload --host 127.0.0.1 --port 8001
-
- 

@@ -1,1 +1,0 @@
-This Layer is responsible for running forecasting pipelines across 3 time-series forecasting methodologies. 
