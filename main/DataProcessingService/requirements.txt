@@ -1,0 +1,7 @@
+pandas
+polars
+numpy
+fastapi
+uvicorn
+pyarrow
+httpx[http2]
