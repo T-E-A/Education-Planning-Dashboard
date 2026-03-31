@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 #region [Rename Dicts]
+# used to rename raw API column names to cleaner readable labels for the dashboard
+
 Latest_KPI_Rename_Dict = {
     'employment_rate_2_years_after_graduating_field': '2020 Employment Rate 2 Years after Graduation',
     'employment_rate_6_months_after_graduating_field': '2020 Employment Rate 6 Months after Graduation',
@@ -58,7 +60,12 @@ Economic_Region_Employment_Dict = {
 
 
 #region [KPI Functions]
+
 def Get_All_Program_University_Data():
+    """
+    Returns: a list of dicts of all program university KPI data across all years,
+    Args: none
+    """
     try:
 
         df = DataService.RequestAllKPIs()
@@ -71,6 +78,9 @@ def Get_All_Program_University_Data():
         return []
 
 def Get_Latest_Program_University_Data():
+    """
+    Returns: a list of dicts of the latest program university KPI data,
+    """
     try:
         df = DataService.RequestLatestKPIs()
         df = df.fillna(0)
@@ -82,13 +92,16 @@ def Get_Latest_Program_University_Data():
         return []
 
 def Get_University_KPI_Data():
+    """
+    Returns: a dict with 'All' and 'Latest' keys, each containing their respective KPI records, empty dict on failure
+    """
     try:
         Data_Directory = {
             'All': {},
             'Latest':{}
         }
 
-        # Map keys to their respective functions
+        # map keys to their respective functions so we can run them in parallel
         Data_Directory_Threads = {
             'All': Get_All_Program_University_Data,
             'Latest': Get_Latest_Program_University_Data
@@ -101,7 +114,7 @@ def Get_University_KPI_Data():
                 for key, func in Data_Directory_Threads.items()
             }
 
-            # Collect results as they complete
+            # Collect results as they finish
             for future in as_completed(future_to_key):
                 key = future_to_key[future]
                 try:
@@ -119,7 +132,13 @@ def Get_University_KPI_Data():
 #endregion
 
 #region [Progam - NOC Links]
+
 def Get_Program_To_Occupation_Data(ProgramID: int) -> list:
+    """
+    Returns: a list of dicts mapping the given program to its linked NOC occupations, returns an empty list on failure
+    Args:
+        ProgramID: int -> the ID of the program to look up NOC links for
+    """
     try:
         df = DataService.RequestProgramNOCLinks(ProgramID=ProgramID)
 
@@ -132,7 +151,14 @@ def Get_Program_To_Occupation_Data(ProgramID: int) -> list:
 #endregion
 
 #region [Historical NOC Grouping Data]
+
 def Get_NOC_Historical_Data(NOC_GroupingID,DGUID='2021A000235'):
+    """
+    Returns: a list of dicts of historical labour statistics for a NOC group in a given region, empty list on failure
+    Args:
+        NOC_GroupingID: int => the NOC grouping ID to pull history for
+        DGUID: str => the dissemination geo unique ID for the region, defaults to '2021A000235'
+    """
     try:
         df = DataService.RequestNOCGroupLaborStatistics(NOC_GroupingID=NOC_GroupingID,DGUID=DGUID)
         
@@ -145,11 +171,18 @@ def Get_NOC_Historical_Data(NOC_GroupingID,DGUID='2021A000235'):
         return []
 
 def Get_Latest_ER_NOC_PCT(NOC_GroupingID, provinceID=35):
+    """
+    Returns: a list of dicts of the latest economic region employment % change for a NOC group, 
+    Args:
+        NOC_GroupingID: int => the NOC grouping ID to filter by
+        provinceID: int => the province ID to pull economic regions for, defaults to 35 (Ontario)
+    """
     try:
         df = DataService.RequestEconomicRegionEmploymentEstimate(NOC_GroupingID=NOC_GroupingID, ProvinceID=provinceID)
         
         df['employment_pct_change'] = pd.to_numeric(df['employment_pct_change'], errors='coerce').fillna(0)
 
+        # label each region as increasing, decreasing, or no change based on the pct value
         conditions = [
             df['employment_pct_change'] > 0,
             df['employment_pct_change'] < 0,
@@ -167,6 +200,13 @@ def Get_Latest_ER_NOC_PCT(NOC_GroupingID, provinceID=35):
         return []
 
 def Get_NOC_Historical(NOC_GroupingID, provinceID=35, DGUID='2021A000235'):
+    """
+    Returns: a dict with 'PROV' and 'ER' keys containing provincial history and economic region data, empty dict on failure
+    Args:
+        NOC_GroupingID: int --> the NOC grouping ID to pull data for
+        provinceID: int --> the province ID, defaults to 35 (Ontario)
+        DGUID: str --> the dissemination geo unique ID for the region, defaults to '2021A000235'
+    """
     try:
         
         Data_Directory = {
@@ -174,7 +214,7 @@ def Get_NOC_Historical(NOC_GroupingID, provinceID=35, DGUID='2021A000235'):
             'ER': {}
         }
 
-        # Map keys to their respective functions
+        # Map keys to their respective functions and args so we can both in parallel
         tasks = {
             'PROV': (Get_NOC_Historical_Data, (NOC_GroupingID, DGUID)),
             'ER': (Get_Latest_ER_NOC_PCT, (NOC_GroupingID, provinceID))
@@ -203,6 +243,12 @@ def Get_NOC_Historical(NOC_GroupingID, provinceID=35, DGUID='2021A000235'):
 
 #region [Provincial Forecast]
 def Get_Provincial_NOC_Forecast(provinceid : int, noc_groupingid : int) -> list:
+    """
+    Returns: a list of dicts of forecasted employment data for a NOC group in a specific province, empty list on failure
+    Args:
+        provinceid: int --> the ID of the province to filter by
+        noc_groupingid: int --> the NOC grouping ID to filter by
+    """
     try:
         df = DataService.Request_Provincial_NOC_Forecast(provinceID=provinceid, noc_groupingid=noc_groupingid)
 
@@ -219,11 +265,17 @@ def Get_Provincial_NOC_Forecast(provinceid : int, noc_groupingid : int) -> list:
         return []
 
 def Get_NOC_Forecast_All_Provinces(noc_groupingid : int) -> list:
+    """
+    Returns: a list of dicts with yearly employment forecasts per province pivoted by year, empty list on failure
+    Args:
+        noc_groupingid: int -> the NOC grouping ID to get forecasts for
+    """
     try:
         df = DataService.Request_All_Province_NOC_Forecast(noc_groupingid=noc_groupingid)
 
         df = df.rename(columns={'province_shorthand':'Province','year':'Year'})
 
+        # only keep forecast years from 2026 onwards
         df = df[df['Year']>=2026]
         
 
@@ -231,6 +283,7 @@ def Get_NOC_Forecast_All_Provinces(noc_groupingid : int) -> list:
 
         df = df.sort_values(by=['provinceid','Year'], ascending=[True,True])
 
+        # pivot so each year becomes its own column with province as the row
         df_pivot = df.pivot(index='Province', columns='Year', values='Employment Forecast')
 
         df_pivot['Province'] = df_pivot.index
@@ -249,13 +302,20 @@ def Get_NOC_Forecast_All_Provinces(noc_groupingid : int) -> list:
         return []
 
 def Get_Forecast_Data(provinceid: int, noc_groupingid: int) -> dict:
+    """
+    Returns: a dict with 'PROV' and 'ALL' keys containing provincial and all-province forecast data, empty dict on failure
+    Args:
+        provinceid: int -> the ID of the province for the provincial forecast
+        noc_groupingid: int -> the NOC grouping ID to get forecasts for
+    """
+
     try:
         Data_Directory = {
             'PROV': {},
             'ALL': {}
         }
 
-        # Map keys to their respective functions
+        # Map keys to their respective functions; run both forecast functions in parallel
         tasks = {
             'PROV': (Get_Provincial_NOC_Forecast, (provinceid, noc_groupingid)),
             'ALL': (Get_NOC_Forecast_All_Provinces, (noc_groupingid,))
@@ -286,6 +346,11 @@ def Get_Forecast_Data(provinceid: int, noc_groupingid: int) -> dict:
 
 #region [Seasonal Decomp and TS Clustering Requests]
 def Transform_Set(Data: pd.DataFrame):
+    """
+    Returns: the same DataFrame with added date-related columns (Year, Month_Num, Month_Name, Quarter)
+    Args:
+        Data: pd.DataFrame => the raw seasonal decomposition DataFrame with a 'datestamp' column
+    """
     try:
         
         Data['datestamp'] = pd.to_datetime(Data['datestamp'])
@@ -302,6 +367,11 @@ def Transform_Set(Data: pd.DataFrame):
         return Data
 
 def Get_Decomp_Set(provinceid):
+    """
+    Returns: a Polars DataFrame of the seasonal decomposition data for a given province
+    Args:
+        provinceid: int --> the ID of the province to pull decomposition data for
+    """
     try:
         
         df_Decomp_Set = DataService.RequestionSeasonalDecomp(provinceid=provinceid)
@@ -315,6 +385,11 @@ def Get_Decomp_Set(provinceid):
         return dp_Decomp_Set
 
 def Filter_Set(dp_Decomp_Set):
+    """
+    Returns: a filtered Polars DataFrame containing only rows between 2022 and 2024, empty Polars DataFrame on failure
+    Args:
+        dp_Decomp_Set: pl.DataFrame => the full decomposition dataset to filter
+    """
     try:
         
         dp_Filtered_Set = dp_Decomp_Set.filter((pl.col('Year')>= 2022) & (pl.col('Year')<= 2024))
@@ -325,6 +400,12 @@ def Filter_Set(dp_Decomp_Set):
         return pl.DataFrame()
 
 def Generate_Cluster_Month_Comparison(dp_Filtered_Set,month):
+    """
+    Returns: a pandas DataFrame comparing clusters by their average seasonal trend for a given month, 
+    Args:
+        dp_Filtered_Set: pl.DataFrame => the filtered decomposition dataset
+        month: int => the month number to filter by, ex. 4 for April
+    """
     try:
 
         change_cols = {'seasonal_3': f'Average Trend for {calendar.month_name[month]}',
@@ -336,6 +417,7 @@ def Generate_Cluster_Month_Comparison(dp_Filtered_Set,month):
             (pl.col('seasonal_3').mean()*1000).round(3).alias('seasonal_3')
         ).to_pandas().sort_values(by=f'seasonal_3', ascending=False).reset_index(drop=True)
 
+        # label each cluster as increasing, decreasing, or no change
         conditions = [
             df_Comp['seasonal_3'] > 0,
             df_Comp['seasonal_3'] < 0,
@@ -354,6 +436,12 @@ def Generate_Cluster_Month_Comparison(dp_Filtered_Set,month):
         return pd.DataFrame()
 
 def Generate_Cluster_Quarter_Comparison(dp_Filtered_Set,quarter):
+    """
+    Returns: a pandas DataFrame comparing clusters by their average seasonal trend for a given quarter, empty DataFrame on failure
+    Args:
+        dp_Filtered_Set: pl.DataFrame => the filtered decomposition dataset
+        quarter: int => the quarter number to filter by, ex. 1 for Q1
+    """
     try:
 
         change_cols = {'seasonal_3': f'Average Trend for Q{quarter}',
@@ -364,6 +452,7 @@ def Generate_Cluster_Quarter_Comparison(dp_Filtered_Set,quarter):
             (pl.col('seasonal_3').mean()*1000).round(3).alias('seasonal_3')
         ).to_pandas().sort_values(by='seasonal_3', ascending=False).reset_index(drop=True)
 
+        # label each cluster as increasing, decreasing, or no change
         conditions = [
             df_Comp['seasonal_3'] > 0,
             df_Comp['seasonal_3'] < 0,
@@ -382,6 +471,13 @@ def Generate_Cluster_Quarter_Comparison(dp_Filtered_Set,quarter):
         return pd.DataFrame()
 
 def Generate_Processed_Clustered_NOC_Sets(provinceid: int, quarter: int, month: int) -> dict:
+    """
+    Returns: a dict with 'FullSet', 'AnalysisSet', and 'ClusterDict' containing the full decomp data, combined cluster analysis, and a cluster ID to name mapping, empty dict on failure
+    Args:
+        provinceid: int => the ID of the province to generate cluster sets for
+        quarter: int => the quarter number to use in the analysis, ex. 1 for Q1
+        month: int => the month number to use in the analysis, ex. 1 for January
+    """
     try:
         
         dp_Decomp_Set = Get_Decomp_Set(provinceid=provinceid)
@@ -391,6 +487,7 @@ def Generate_Processed_Clustered_NOC_Sets(provinceid: int, quarter: int, month: 
         df_Monthly_Comp = Generate_Cluster_Month_Comparison(dp_Filtered_Set, month)
         df_Quarter_Comp = Generate_Cluster_Quarter_Comparison(dp_Filtered_Set, quarter)
 
+        # merge monthly and quarterly comparisons on cluster and add a readable cluster name 
         df_Combined_Analysis = df_Quarter_Comp.merge(df_Monthly_Comp, on=['Cluster'], how='inner')
         df_Combined_Analysis['Cluster Name'] = df_Combined_Analysis['Cluster'].apply(lambda x: f"Cluster [{x}]")
         df_Combined_Analysis = df_Combined_Analysis.sort_values(by=[f'Average Trend for Q{quarter}'], ascending=False)
@@ -408,3 +505,5 @@ def Generate_Processed_Clustered_NOC_Sets(provinceid: int, quarter: int, month: 
     except Exception as e:
         logger.exception(f'[{e}]')
         return {}
+
+#endregion
