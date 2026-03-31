@@ -1,0 +1,6 @@
+django-filter
+django 
+djangorestframework
+asgiref
+gunicorn
+uvicorn[standard]
