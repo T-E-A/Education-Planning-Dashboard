@@ -14,7 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the FastAPI app code
 COPY AIService/ /app/
 
-# Default command to run the FastAPI server
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8010", "--reload"]
 
 CMD ["python", "main.py"]
