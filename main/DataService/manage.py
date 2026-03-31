@@ -3,10 +3,14 @@
 import os
 import sys
 
-#Main Execution point of the API. 
+# Main Execution point of the API. 
 
 def main():
-    """Run administrative tasks."""
+    # Run administrative tasks.
+    """
+    Returns: none, starts the Django command line utility
+    Args: none
+    """
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Server_Configuration_and_Settings.settings')
     try:
         from django.core.management import execute_from_command_line
