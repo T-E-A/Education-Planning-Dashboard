@@ -10,3 +10,4 @@ polars
 pyarrow
 sentence-transformers
 tqdm
+langchain
