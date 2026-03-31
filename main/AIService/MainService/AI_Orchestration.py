@@ -93,6 +93,8 @@ class AgentOrchestrator():
             Returns: A summary of matched Occupations based on the inputed user vector.
             Args:
                 params = {
+                    'user_input_vector': list[int] => the user's input vector representing their skills, preferences, or other relevant attributes for job matching.
+                    'session_id': str => the session id to use for the agent's memory (optional, defaults to 'default')
                     'RetrievedDescriptions': list[str] => a list of relevant job descriptions retrieved based on the matched occupations, providing context for the agent to generate summaries.
                     'MatchedList': list[str] => a list of occupation titles that were identified as matches
                 }
@@ -155,8 +157,8 @@ class AgentOrchestrator():
             Returns: The formatted chatbot's response to the user's query
             Args:
                 params = {
-                    '**params: see query_chatbot endpoint in app.py for details**'
-                }
+                    'user_query': str => the user's input query for the chatbot
+                    }
         '''
         
         try:
