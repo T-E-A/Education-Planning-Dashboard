@@ -1,0 +1,8 @@
+{
+    "status": 200,
+    "services": {
+        "Data Processing Service": "Running",
+        "Django API Service": "Running"
+    },
+    "message": "All services are running"
+}
