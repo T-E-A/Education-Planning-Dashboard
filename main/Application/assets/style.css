@@ -1,0 +1,147 @@
+.mainnav-button {
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    /* font-size: 30px; */
+    /* font-family: 'Courier New';
+    background-color: #cfd9db;
+    color: rgb(24, 23, 23) */
+}
+
+.mainnav-button:hover {
+    background-color: #141614;
+    color: rgb(192, 199, 209)
+   
+}
+
+.mainnav-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px; 
+    padding: 20px;
+    background-color: #E6E7F0;
+    border-radius: 12px;
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: #050c2f;
+}
+
+
+.KPI_2_by_2 {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.mainnav-link {
+    display: inline-block;       
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px 10px;
+    padding: 10px 20px;
+    font-size: 30px;
+    font-family: 'Courier New';
+    background-color: #cfd9db;
+    color: rgb(24, 23, 23);
+    text-decoration: none;       
+    transition: 0.3s;            
+}
+
+.mainnav-link:hover {
+    background-color: #141614;
+    color: rgb(192, 199, 209);
+}
+
+.main-header {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Courier New';
+}
+
+
+.main_page_grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    justify-items: center;  
+    align-items: center;    
+    height: 100vh;          
+    width: 100%;
+    place-content: center;  
+    gap: 20px;  
+}
+
+
+.main-page-1-1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.main-page-2-2 {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+.main-page-3-1 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.main_page_grid img:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.circle-container {
+    width: auto;
+    height: auto;
+    border-radius: 50%;          
+    background-color: #d0d4d6;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(25, 40, 115, 0.30); 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.circle-container:hover {
+    transform: scale(1.08);
+    cursor: pointer;
+    background-color: #115476;  
+    border-color: #ad4a45;
+    border-width: 10px;
+    border-radius: 30%;
+    box-shadow: 0 6px 12px rgba(239, 238, 238, 0.953);
+
+}
+
+.circle-container img {
+     object-fit: cover;    
+}
+
+.circle-container:hover h4 {
+    color: white;
+}
+.circle-container:hover p {
+    color: white;
+}
+
+
+.dbc .dash-table-container .dash-header {
+    background-color: #2c3e50 !important;
+    color: white !important;
+}
+
+.circle-container {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background-color: #d0d4d6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
