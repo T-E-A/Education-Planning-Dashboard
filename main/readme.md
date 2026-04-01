@@ -38,8 +38,6 @@ This project is a multi-service application built using Docker. It consists of f
 
 * Dash web application (frontend)
 * Consumes:
-
-  * Django API
   * Data Processing Service
   * AI Service
 
