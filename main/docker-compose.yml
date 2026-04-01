@@ -1,0 +1,95 @@
+services:
+
+  djangoapi:
+    build:
+      context: .                     
+      dockerfile: DataService/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./DataService:/db_app
+      - ./Repository/Database:/data
+    environment:
+      - DB_PATH=/data/EducationPlanningDB.db
+      - ALLOWED_HOSTS=djangoapi,localhost,127.0.0.1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+      
+  dataprocessingservice:
+    build:
+      context: .
+      dockerfile: DataProcessingService/Dockerfile
+    ports:
+      - "8012:8012"
+    volumes:
+      - ./DataProcessingService:/app
+      - ./logs:/logs
+    environment:
+      - BASE_URI=http://djangoapi:8000/api/
+      - ENV=DOCKER
+      - DEBUG=false
+    depends_on:
+      djangoapi:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8012/health/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+  
+  aiservice:
+    build:
+      context: .                     
+      dockerfile: AIService/Dockerfile
+    ports:
+      - "8010:8010"
+    volumes:
+      - ./AIService:/db_app
+      - ./Repository:/data
+      - ./logs:/logs
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    environment:
+      - Vector_DB=/data/VectorDatabase/chroma_db
+      - Match_Maker=/data/ModelPackages/career_matcher.pkl
+      - Domestic_Fee_Matcher=/data/ModelPackages/domestic_fees_matcher.pkl
+      - International_Fee_Matcher=/data/ModelPackages/international_fees_matcher.pkl
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - ENV=DOCKER
+      - DEBUG=false
+      
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8010/health/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  application:
+    build:
+      context: .
+      dockerfile: Application/Dockerfile
+    ports:
+      - "8519:8519"
+    volumes:
+      - ./Application:/app
+      - ./Repository:/data
+    environment:
+      - BASE_URI=http://djangoapi:8000/api/
+      - PROCESSING_SERVICE_URI=http://dataprocessingservice:8012/
+      - AI_SERVICE_URI=http://aiservice:8010/
+      - ENV=DOCKER
+      - UNI_FEE_PATH=/data/DataFlatFiles/Tbl_University_Fees.csv
+      - CAREER_PATHWAYS=/data/DataFlatFiles/Tbl_CareerPathways.parquet
+      - CAREER_OPTIONS_PATH=/data/Options/Career_Options.json
+      - MAJOR_OPTIONS_PATH=/data/Options/Major_Options.json
+      - FORECAST_EVAL=/data/DataFlatFiles/Tbl_Forecast_Evaluation_Metrics.csv
+    depends_on:
+      dataprocessingservice:
+        condition: service_healthy
+      aiservice:
+        condition: service_healthy
