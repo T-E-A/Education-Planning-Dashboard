@@ -14,5 +14,3 @@ The primary objectives of this directory are:
 - Experimenting with **machine learning approaches for time series clustering and NOC occupation matching**
 
 ---
-
-# Folder Structure
