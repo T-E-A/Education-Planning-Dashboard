@@ -297,6 +297,8 @@ def new_message(query, n_clicks, session_id, messages, values, ids):
                         for slider_id, value in zip(ids, values)
                     }
 
+                    print(Metrics)
+
                     response = Send_Compentency_List(
                         Metrics=Metrics,
                         session_id=session_id

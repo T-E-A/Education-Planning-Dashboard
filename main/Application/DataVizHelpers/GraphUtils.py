@@ -350,11 +350,13 @@ def Graph_Program_University_Post_Grad_Employment_Rate_Bar(Program, Measure, Dat
             x='University',
             y=Measure,
             height=900,
-            color=Measure,
-            color_continuous_scale=['#692618','#183B69','#186930'],
+            # color=Measure,
+            # color_continuous_scale=['#692618','#183B69','#186930'],
+            color_discrete_sequence=["#091F4D"],
             # text='University',
             hover_data=['UniversityID','University','ProgramID','Program'],
-            template='ggplot2'
+            template='ggplot2',
+            text=Measure,
         )
 
         bar.update_layout(
@@ -581,15 +583,24 @@ def Generate_NOC_ER_Stat(Data, NOC_Occupation):
 def Generate_Estimate_Graph(Data, noc_group):
     try:
         
+        
+        Data = Data.groupby('Province').agg(
+            Estimate=('Estimate', 'sum')
+        ).reset_index()
+
+        Data['Estimate'] = Data['Estimate'].round(2)
+
         line = px.bar(
             title=f"Estimate Employment (in Persons Thousands) for {noc_group} all Provinces",
             data_frame=Data,
             x='Province',
             y='Estimate',
-            hover_data=['Year'],
+            text='Estimate',
             color_discrete_sequence=["#091F4D"],
 
         )
+
+        line.update_traces(textposition='inside')
 
         line.update_layout(
             title_font=dict(size=14),  
@@ -1012,7 +1023,7 @@ def Graph_NOC_Decompose_Set(Data, *,errorMessage=None):
             return {'data': [], 'layout': {'title': f'NOC Decompostion Unavailable due to system error => {str(errorMessage)}'}}
 
         fig = make_subplots(
-            rows=6,
+            rows=5,
             cols=1,
             shared_xaxes=True,
             vertical_spacing=0.05,
@@ -1089,24 +1100,25 @@ def Graph_NOC_Decompose_Set(Data, *,errorMessage=None):
         col=1
         )
 
-        fig.add_trace(
-            go.Scatter(
-                x=Data['datestamp'],
-                y=Data['resid'],
-                mode="markers",
-                name="Residuals",
-                marker=dict(color="#580A0A", size=8)
-            ),
-            row=6,
-            col=1
-        )
+        # fig.add_trace(
+        #     go.Scatter(
+        #         x=Data['datestamp'],
+        #         y=Data['resid'],
+        #         mode="markers",
+        #         name="Residuals",
+        #         marker=dict(color="#580A0A", size=8)
+        #     ),
+        #     row=6,
+        #     col=1
+        # )
 
 
 
         fig.update_layout(
             title="Seasonal Decomposition",
             showlegend=False,
-             hovermode='x unified'
+             hovermode='x unified',
+              plot_bgcolor="#BBBFC5"
         )
         fig.update_layout(template='ggplot2')
 
@@ -1139,7 +1151,18 @@ def Graph_Annual_Growth(Data, *,errorMessage=None):
 
         )
 
+       
+
         bar.update_traces(marker=dict(size=25))
+
+        bar.add_traces(
+            go.Scatter(
+                x=Data['Year_Str'],
+                y=Data['Growth'],
+                mode='lines',
+                line=dict(color="#1C2025", dash='dash', width=2.5)
+            )    
+        )
 
         bar.update_layout(
             title_font=dict(size=24),  
@@ -1158,6 +1181,7 @@ def Graph_Annual_Growth(Data, *,errorMessage=None):
                 tickfont=dict(size=12)  
             ),
             showlegend=False,
+             plot_bgcolor="#BBBFC5" 
             )
         
         return bar
@@ -1202,6 +1226,15 @@ def Graph_Monthly_Growth(Data, *, errorMessage=None):
         )
 
         bar.update_traces(marker=dict(size=25))
+
+        bar.add_traces(
+            go.Scatter(
+                x=Data['Month_Name'],
+                y=Data['Growth'],
+                mode='lines',
+                line=dict(color="#1C2025", dash='dash', width=2.5)
+            )    
+        )
     
         bar.update_layout(
             title_font=dict(size=24),  
@@ -1220,6 +1253,7 @@ def Graph_Monthly_Growth(Data, *, errorMessage=None):
                 tickfont=dict(size=12)  
             ),
             showlegend=False,
+            plot_bgcolor="#BBBFC5"
             # barmode='overlay'
             ),
         
@@ -1262,6 +1296,16 @@ def Graph_Quarterly_Growth(Data, *,errorMessage=None):
 
         )
         bar.update_traces(marker=dict(size=25))
+
+        bar.add_traces(
+            go.Scatter(
+                x=Data['Quarter_Name'],
+                y=Data['Growth'],
+                mode='lines',
+                line=dict(color="#1C2025", dash='dash', width=2.5)
+            )    
+        )
+    
         
         bar.update_layout(
             title_font=dict(size=24),  
@@ -1280,6 +1324,7 @@ def Graph_Quarterly_Growth(Data, *,errorMessage=None):
                 tickfont=dict(size=12)  
             ),
             showlegend=False,
+             plot_bgcolor="#BBBFC5"
             # barmode='group'
             )
         

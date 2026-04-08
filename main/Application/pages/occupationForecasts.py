@@ -163,7 +163,7 @@ layout = dbc.Container(
             dbc.Row(
                 dbc.Col(
                     dbc.Button(
-                        "Ask AI to Explain",
+                        "Ask AI for Summary",
                         id='FO_Ask_AI_Button',
                         color="primary"
                     ),

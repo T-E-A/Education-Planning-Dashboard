@@ -84,21 +84,21 @@ layout = dbc.Container(
         ),
 
         # ---------- ACTION BUTTONS ----------
-        dbc.Row(
-            [
-                dbc.Col(
-                    dbc.Button(
-                        "Save Chat",
-                        id="btn-save-chat",
-                        color="success",
-                        className="w-100",
-                        n_clicks=0
-                    ),
-                    width=3
-                ),
-            ],
-            className="mt-3"
-        ),
+        # dbc.Row(
+        #     [
+        #         dbc.Col(
+        #             dbc.Button(
+        #                 "Save Chat",
+        #                 id="btn-save-chat",
+        #                 color="success",
+        #                 className="w-100",
+        #                 n_clicks=0
+        #             ),
+        #             width=3
+        #         ),
+        #     ],
+        #     className="mt-3"
+        # ),
 
         # Hidden div to store chat history state
         dcc.Store(id="chat-history-store", data=[]),

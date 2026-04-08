@@ -908,15 +908,15 @@ def Aggregate_NOC_Seasonal_Decomp_Analysis_Set(df_Filtered: pd.DataFrame):
         Set = df_Filtered.to_pandas().sort_values(by='datestamp', ascending=True)
 
         AnnualGrowth = df_Filtered.filter(pl.col('Year')>=2020).group_by(['Year']).agg(
-            (pl.col('seasonal_12').mean() * 1000).round(2).alias('Growth')
+            (pl.col('seasonal_12').sum()).round(2).alias('Growth')
         ).to_pandas().sort_values(by='Year', ascending=True)
 
         MonthlyGrowth = df_Filtered.filter(pl.col('Year')>=2020).group_by(['Month_Num','Month_Name']).agg(
-            (pl.col('seasonal_12').mean() * 1000).round(2).alias('Growth')
+            (pl.col('seasonal_12').sum()).round(2).alias('Growth')
         ).to_pandas().sort_values(by='Month_Num', ascending=True)
 
         QuarterlyGrowth = df_Filtered.filter(pl.col('Year')>=2020).group_by(['Quarter']).agg(
-            (pl.col('seasonal_12').mean() * 1000).round(2).alias('Growth')
+            (pl.col('seasonal_12').sum()).round(2).alias('Growth')
         ).to_pandas().sort_values(by='Quarter', ascending=True)
 
         QuarterlyGrowth['Quarter_Name'] = QuarterlyGrowth['Quarter'].apply(lambda x: f"Q{x}")
@@ -962,6 +962,7 @@ def Generate_NOC_Seasonal_Decomp_Analysis(provinceid: str, noc_groupingid: str):
 
         df_Filtered = Cache.dp_All_Clusters_Seasonal_Decomp.filter((pl.col('noc_groupingid')==int(noc_groupingid))
                                                                    & (pl.col('provinceid')==int(provinceid))
+                                                                   & (pl.col('Year')>=2020)
                                                                    & (pl.col('Year')<2025)
                                                                    )
 
