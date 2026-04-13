@@ -1,0 +1,40 @@
+[
+    {
+        "Prompt":"What credentials do I need to become a Data Scientist?",
+        "Ground_Truth_Answer":"To become a Data Scientist, individuals typically require a strong educational background in quantitative or technical fields. This usually includes a bachelor’s degrees in statistics, mathematics, computer science, computer systems engineering or related disciplines, or a completion of a college program in computer science. Additionally, Data Science roles may also require a master’s or doctoral degree in the fields of such as data science, machine learning, or another related quantitative area. In addition to formal education, practical experience in programming, statistical modeling, and machine learning is commonly expected to effectively analyze data and build predictive models.",
+        "Context":[
+            "A bachelor’s degree in statistics, mathematics, computer science, computer systems engineering or a related discipline or completion of a college program in computer science is usually required.",
+            "A master’s or doctoral degree in machine learning, data science, or a related quantitative field is usually required.",
+            "Experience in programming is usually required.",
+            "Experience in statistical modelling and machine learning is usually required."
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What are the main things that Cybersecurity Specialists do for their job?",
+        "Ground_Truth_Answer":"Cybersecurity Specialists work with clients to identify security requirements and assess physical and technical security risks to hardware, software, and data. Their duties include applying encryption protocols to secure data, monitoring system access and credentials, and installing and maintaining security tools such as antivirus and threat detection systems. They also monitor networks for cyberattacks or unauthorized activity and respond to security incidents by implementing appropriate protection measures in accordance with the organization’s incident response plan to protect information, data and systems. Additionally, they document emergency measures policies, procedures and tests.",
+        "Context":[
+            "Confer with clients to identify and document requirements, assess physical and technical security risks to data, software and hardware.",
+            "Apply encryption protocols and manage keys to ensure security of data is maintained while at rest and in transit.",
+            "Monitor access and credentials for information and systems.",
+            "Install, test and operate security software and tools such as anti-virus and automated threat detection/prevent systems to ensure security measures are in place and working as intended.",
+            "Monitor for cyber attacks, intrusions and unusual, unauthorised or illegal activity.",
+            "Plan and carry out security measures in response to cybersecurity events and incidents in accordance with an organization’s incident response plan to protect information, data and systems",
+            "Document computer security and emergency measures policies, procedures, and tests."
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What are the various occupation in the Technical electrical trades category?",
+        "Ground_Truth_Answer":"The Technical Electrical Trades category includes several specialized occupation. These include 72200 Electricians (except industrial and power system), 72201 Industrial electricians, 72202 Power system electricians, 72203 Electrical power line and cable workers, 72204 Telecommunications line and cable installers and repairers, and 72205 Telecommunications equipment installation and cable television service technicians.",
+        "Context":[
+            "72200 Electricians (except industrial and power system)",
+            "72201 Industrial electricians",
+            "72202 Power system electricians",
+            "72203 Electrical power line and cable workers",
+            "72204 Telecommunications line and cable installers and repairers",
+            "72205 Telecommunications equipment installation and cable television service technicians"
+        ],
+        "Content_Type":"NOC"
+    }
+]
