@@ -1,0 +1,11 @@
+pandas
+polars
+plotly
+uvicorn
+httpx[http2]
+dash
+dash-bootstrap-components
+uvicorn
+reportlab
+pyarrow
+dash-chat
