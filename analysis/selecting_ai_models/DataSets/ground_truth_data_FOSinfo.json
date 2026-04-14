@@ -1,0 +1,71 @@
+[
+    {
+        "Prompt": "What kind of programs are considered under the field of English Literature?",
+        "Ground_Truth_Answer": "Programs considered under the field of English Literature include: English general literature, English literary studies, and English literature.",
+        "Context": [
+            "Class 23.1401 English literature, general.",
+            "This instructional program class comprises any program in English language and literature that focuses on literature from one or more genres, cultures or traditions",
+            "These programs include courses in period and genre studies, author studies, literary criticism, and studies of various types of literary text.",
+            "Illustrative examples: English general literature, English literary studies, and English literature.",
+            "Exclusions: Classical literature, Comparative literature, English language, literature and linguistics, English literature education, foreign literature, french general literature, humanities, art and literature, and theatre literature."
+        ],
+        "Content_Type": "FOSinfo"
+    },
+    {
+        "Prompt": "What kind of programs are considered under the field of Acting?",
+        "Ground_Truth_Answer": "Programs considered under the field of Acting include: Acting, dramatic actor/actress, stage acting, and theatre performance.",
+        "Context": [
+            "Class 50.0506 Acting.",
+            "This instructional program class comprises any program that prepares individuals to communicate dramatic information, ideas, moods, and feelings through the achievement of naturalistic and believable behaviour in imaginary circumstances.",
+            "These programs include courses in voice and acting speech, stage dialects, movement, improvisation, acting styles, theatre history, script interpretation, and actor coaching.",
+            "Illustratice examples: Acting, dramatic actor/actress, stage acting, and theatre performance.",
+            "Exclusions: comedy performance, drama and dance teacher educations, English speech and rhetorical studies, and French rhetoric and composition."
+        ],
+        "Content_Type": "FOSinfo"
+    },
+    {
+        "Prompt": "What kind of programs are considered under the field of Office Managment and supervision?",
+        "Ground_Truth_Answer": "Programs considered under the field of Office Management and Supervision include: Office management, Office management and supervision, and Office supervision.",
+        "Context": [
+            "Class 52.0204 Office management and supervision.",
+            "This instructional program class comprises any program that prepares individuals to supervise and manage the operations and personnel of business offices and management-level divisions.",
+            "These programs include courses in employee supervision, management, and labour relations; budgeting; scheduling and coordination; office systems operation and maintenance; office records management, organization, and security; office facilities design and space management; preparation and evaluation of business management data; and public relations.",
+            "Illustrative examples: office management, office management and supervision, and office supervision.",
+            "Exclusions: Executive assistant, human resources management, medical office administration, office clerk, operations management, and secretarial science."
+        ],
+        "Content_Type": "FOSinfo"
+    }
+    {
+        "Prompt": "What subsections are there under Electromechanical technology/technician?",
+        "Ground_Truth_Answer": "Programs considered under Electromechanical technology/technician include: Biomedical technology/technician, Electromechanical/electromechanical engineering technology/technician, Instrumentation technology/technician, Robotics technology/technician, Automation engineer technology/technician, Mechatronics, robotics, and automation engineering technology/technician, and Electromechanical technologies/technician, other.",
+        "Context": [
+            "15.0401 Biomedical technology/technician",
+            "15.0403 Electromechanical/electromechanical engineering technology/technician",
+            "15.0404 Instrumentation technology/technician",
+            "15.0405 Robotics technology/technician",
+            "15.0406 Automation engineer technology/technician",
+            "15.0407 Mechatronics, robotics, and automation engineering technology/technician",
+            "15.0499 Electromechanical technologies/technicians, other"
+        ]
+    }
+    {
+        "Prompt": "What subsections are there under the Fine arts and art studies section?",
+        "Ground_Truth_Answer": "Programs considered under the Fine arts and art studies section include: Art/art studies, general, Fine/studio arts, general, Art history, criticism and conservation, Drawing, Intermedia/multimedia, Painting, Sculpture, Printmaking, Ceramic arts and ceramics, Fibre, textile, and weaving arts, Jewellery arts, Metal arts, fine arts and art studies, other.",
+        "Context": [
+            "50.0701 Art/art studies, general",
+            "50.0702 Fine/studio arts, general",
+            "50.0703 Art history, criticism and conservation",
+            "50.0705 Drawing",
+            "50.0706 Intermedia/multimedia",
+            "50.0708 Painting",
+            "50.0709 Sculpture",
+            "50.0710 Printmaking",
+            "50.0711 Ceramic arts and ceramics",
+            "50.0712 Fibre, textile, and weaving arts",
+            "50.0713 Jewellery arts",
+            "50.0714 Metal arts",
+            "50.0799 Fine arts and art studies, other"
+        ],
+        "Content_Type": "FOSinfo"
+    }
+]
