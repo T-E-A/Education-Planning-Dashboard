@@ -36,5 +36,101 @@
             "72205 Telecommunications equipment installation and cable television service technicians"
         ],
         "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What is the main difference between Web Designers and Web Developers?",
+        "Ground_Truth_Answer":" The main difference between web designers and web developers is their focus in creating a website. Web designers are responsible for the visual layout, appearance, and user experience, ensuring the website is attractive and easy to navigate. Web developers focus on the technical side by using programming languages to build, modify, and maintain the website’s functionality. While designers plan how the site looks, developers make sure it works properly.",
+        "Context":[
+            "Web designers develop and create the visual presentation, layout and functionality of websites and related applications. They are responsible for ensuring that the website is easy to use, and that the information is easy to access. Web designers are employed in computer software development firms, information technology consulting firms, information technology units throughout the public and private sectors, advertising agencies or they may be self-employed.",
+            "Web developers and programmers use a variety of programming languages to design, create and modify websites. They analyse users’ needs to implement content, graphics, performance, and website capacity. They may also integrate websites with other computer applications. They are employed in computer software development firms, information technology consulting firms, information technology units throughout the public and private sectors, advertising agencies or they may be self-employed."
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What is the main difference between Web Designers and Web Developers?",
+        "Ground_Truth_Answer":" The main difference between web designers and web developers is their focus in creating a website. Web designers are responsible for the visual layout, appearance, and user experience, ensuring the website is attractive and easy to navigate. Web developers focus on the technical side by using programming languages to build, modify, and maintain the website’s functionality. While designers plan how the site looks, developers make sure it works properly.",
+        "Context":[
+            "Web designers develop and create the visual presentation, layout and functionality of websites and related applications. They are responsible for ensuring that the website is easy to use, and that the information is easy to access. Web designers are employed in computer software development firms, information technology consulting firms, information technology units throughout the public and private sectors, advertising agencies or they may be self-employed.",
+            "Web developers and programmers use a variety of programming languages to design, create and modify websites. They analyse users’ needs to implement content, graphics, performance, and website capacity. They may also integrate websites with other computer applications. They are employed in computer software development firms, information technology consulting firms, information technology units throughout the public and private sectors, advertising agencies or they may be self-employed."
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What are some of the things that Longshore workers do? What kind of education do you need to be a Longshore worker?",
+        "Ground_Truth_Answer":"Longshore workers are responsible for loading and unloading cargo from ships and moving goods around docks using equipment such as industrial trucks, tractors, cranes, and hoisting devices. They may transfer containers, vehicles, bulk materials like grain or coal, and liquids into ships, as well as secure cargo, open and close hatches, and clean ship holds. To become a longshore worker, some secondary school education may be required. Most of the necessary skills are learned through on-the-job training.",
+        "Context":[
+            "Operate industrial trucks, tractors and other mobile equipment to transfer cargo, such as containers, crated items, automobiles and pallet-mounted machinery, around dock to within range of cranes and hoists.",
+            "Operate winches or other hoisting devices to load and unload cargo onto and from ships and other vessels.",
+            "Operate mechanical towers to load vessels with materials such as coal and ore.",
+            "Operate equipment to transfer bulk materials, such as grain, to hold of vessels.",
+            "Connect hoses and operate equipment to transfer liquid materials into storage tanks on vessels.",
+            "Perform other activities such as lashing and shoring cargo aboard ships, opening and closing hatches, cleaning holds of ships and rigging cargo.",
+            "Some secondary school education may be required.",
+            "On-the-job training is provided"
+
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"Can you simplify the NOC hierarchy for me?",
+        "Ground_Truth_Answer":"The NOC hierarchy is a system used to organize jobs from broad categories to very specific occupations. The Broad Category (first digit) groups jobs by the general type of work or industry. The TEER Category (second digit) shows the level of training, education, and experience required for the job. Together, these two digits form the Major Group, which contains several related occupations. The Sub-major Group (3 digits) and Minor Group (4 digits) further narrow down the field of work, while the Unit Group (5 digits) is the most specific level and represents the exact occupation.",
+        "Context":[
+            "The Broad Category (first digit) of the classification represents the occupational categorization which is defined by the type of work performed, the field of study, or the industry of employment. There are 10 Broad categories in NOC 2021 Version 1.0.",
+            "The TEER Category (second digit) of the classification represents the necessary training, education, experience and responsibilities of the occupation. There are 6 TEER categories in NOC 2021 Version 1.0.",
+            "The Major Group (first and second digits) of the classification is represented by the Broad occupational categorization (first digit) and TEER categorization (second digit) together. A major group also encompasses several sub-major groups and thus represents the two-digit code used by the NOC. There are 45 major groups in NOC 2021 Version 1.0.",
+            "The Sub-major Group (3-digit) of the classification represents the aggregation of several minor groups and thus represents the three-digit code used by the NOC. There are 89 sub-major groups in NOC 2021 Version 1.0.",
+            "The Minor Group (4-digit) of the classification represents the domain in which an occupation is carried out (occupational domain). It is an aggregation of several unit groups and thus represents the four-digit code used by the NOC. There are 162 minor groups in NOC 2021 Version 1.0.",
+            "The Unit Group (5-digit) of the classification is the most detailed level of the classification and represents one or several occupations combined within the NOC. There are 516 units groups in NOC 2021 Version 1.0."
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What are the various credentials needed for someone to pursue the Secondary School teacher occupation?",
+        "Ground_Truth_Answer":"To become a secondary school teacher, individuals typically need a bachelor’s degree in education, which is often completed after earning a bachelor’s degree in arts or sciences for academic subjects. Those who teach vocational or technical subjects usually complete a bachelor’s degree in education after gaining specialized training or experience in that field. Teachers must also obtain a provincial teaching certificate, and additional training may be required to specialize in areas such as special education or teaching English or French as a second language. In some cases, membership in a provincial or territorial teachers’ association may be required, and department heads usually need several years of teaching experience.",
+        "Context":[
+           "Teachers of academic subjects require a bachelor’s degree in education which is often preceded by a bachelor’s degree in the arts or sciences.",
+           "Teachers of vocational or technical subjects require a bachelor’s degree in education which is usually preceded by specialized training or experience in the subject.",
+           "Instructors of trades in Quebec require completion of an apprenticeship training program and industry or trade certification.",
+           "Department heads usually require several years of teaching experience.",
+           "To specialize in special education or English or French as a second language, additional training is required.",
+           "A provincial teaching certificate is required.",
+           "Membership in a provincial or territorial teachers’ association or federation may be required."
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What do Psychologists do? And what are some of the various types of psychologists?",
+        "Ground_Truth_Answer":"Psychologists study human behaviour and mental processes by assessing behaviour, diagnosing emotional or cognitive disorders, and providing counselling or therapy to individuals and groups. They may use psychological tests, develop treatment and intervention programs, conduct research, publish studies, and present their findings at conferences or workshops. Psychologists may also provide consultation services to organizations and help clients manage physical illnesses or personal challenges. Some types of psychologists include behavioural, child, cognitive, developmental, educational, industrial, neuropsychologists, social psychologists, and sports psychologists.",
+        "Context":[
+           "Examine and assess behaviour, diagnose behavioural, emotional and cognitive disorders, counsel clients and provide therapy.",
+           "Help clients manage physical illness and disorders.",
+           "Counsel individuals and groups to achieve more effective personal, social and vocational development and adjustment, and offer mediation services.",
+           "Use standard psychological tests for assessment.",
+           "Plan intervention programs and conduct program evaluation.",
+           "Apply psychological theory and principles regarding behaviour and mental processes such as learning, language development, memory and perception to develop treatment programs.",
+           "Formulate hypotheses and experimental designs, review literature, conduct studies and publish research papers, educational texts and articles.",
+           "Deliver presentations at conferences, workshops or symposia.",
+           "Provide consultation services to government and other organizations.",
+           "Conduct applied psychology and/or experimental research.",
+           "Sub-specialties include behavioural psychology, child psychology, cognitive psychology, developmental psychology, educational psychology, industrial psychology, neuropsychology, social psychology or sports psychology."
+        ],
+        "Content_Type":"NOC"
+    },
+    {
+        "Prompt":"What are the various credentials needed for the Translators, terminologists and interpreter's unit group?",
+        "Ground_Truth_Answer":"To work as a translator, terminologist, or interpreter, individuals usually need a university degree in translation with a specialization in translation, interpretation, or terminology in two languages, including at least one of Canada’s official languages. Alternatively, they may have a degree in a related field such as languages or linguistics with translation courses and two years of experience, or five years of full-time translation experience in two languages. Sign language interpreters typically require a college program or university certificate in sign language interpretation and may need certification in LSQ or ASL. Certification from the Canadian Translators, Terminologists and Interpreters Council may be required, and membership in a provincial or territorial professional association may also be necessary.",
+        "Context":[
+            "A university degree in translation with a specialization in translation, interpretation or terminology in two languages including at least one of the two official languages or A university degree in a related discipline such as languages, linguistics, philology and courses in linguistic transfer and two years’ experience as a full-time translator working in two languages, at least one of which is an official language or Five years of experience as a full-time translator working in two languages, at least one of which is an official language, are required.",
+            "Sign language interpreters require a college training program or a university certificate in sign language interpretation.",
+            "Certification on dossier or by examination from the Canadian Translators, Terminologists and Interpreters Council (CTTIC) may be required for translators, terminologists and interpreters.",
+            "Sign language interpreters may require a certificate or certification evaluation in LSQ or ASL.",
+            "Fluency in three languages is usually required for translators or interpreters working in an international context.",
+            "Membership in a provincial or territorial association of translators, interpreters and terminologists may be required.",
+            "Membership in a provincial association of sign language interpreters may be required.",
+            "Use of professional titles may be regulated in some provinces."
+        ],
+        "Content_Type":"NOC"
     }
+
+
 ]
