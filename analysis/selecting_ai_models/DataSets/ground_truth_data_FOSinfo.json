@@ -34,7 +34,7 @@
             "Exclusions: Executive assistant, human resources management, medical office administration, office clerk, operations management, and secretarial science."
         ],
         "Content_Type": "FOSinfo"
-    }
+    },
     {
         "Prompt": "What subsections are there under Electromechanical technology/technician?",
         "Ground_Truth_Answer": "Programs considered under Electromechanical technology/technician include: Biomedical technology/technician, Electromechanical/electromechanical engineering technology/technician, Instrumentation technology/technician, Robotics technology/technician, Automation engineer technology/technician, Mechatronics, robotics, and automation engineering technology/technician, and Electromechanical technologies/technician, other.",
@@ -47,7 +47,7 @@
             "15.0407 Mechatronics, robotics, and automation engineering technology/technician",
             "15.0499 Electromechanical technologies/technicians, other"
         ]
-    }
+    },
     {
         "Prompt": "What subsections are there under the Fine arts and art studies section?",
         "Ground_Truth_Answer": "Programs considered under the Fine arts and art studies section include: Art/art studies, general, Fine/studio arts, general, Art history, criticism and conservation, Drawing, Intermedia/multimedia, Painting, Sculpture, Printmaking, Ceramic arts and ceramics, Fibre, textile, and weaving arts, Jewellery arts, Metal arts, fine arts and art studies, other.",

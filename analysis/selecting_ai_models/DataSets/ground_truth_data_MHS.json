@@ -1,0 +1,51 @@
+[
+    {
+        "Prompt": "What kind of counselling services are at Laurentian University?",
+        "Ground_Truth_Answer": "Laurentian University offers a range of services to support the mental health and well-being of their students. The Student General Assossiation promotes and supports a twenty-four hour student benefits supported counselling service called Aspiria. Keep Me Safe is the university's international student mental health support program, and additionally there is a seperate servie for Indigenous students.",
+        "Context": [
+            "Health & Wellness and Counselling services are located on campus. The Health & Wellness team includes a Family Physician, Nurse Practitioner, and Registered Nurses.",
+            "The Indigenous Student Affairs team strives to ensure a positive learning environment in a manner consistent with the Indigenous worldview. The intent is to increase accessibility and retention, as well as enhance the academic experience for students of First Nations, Métis, and Inuit ancestry at Laurentian University.",
+            "Keep Me Safe is the university’s international student mental health support program. The program offers immediate access night or day. International students can talk to someone in their own language with a call, chat or email.",
+            "The Student General Association (SGA) promotes and supports a twenty-four hour student benefits supported counselling service called Aspiria."
+        ],
+        "Content_Type": "MHS"
+    },
+    {
+        "Prompt": "What kind of mental health services are there at UOIT?",
+        "Ground_Truth_Answer": "UOIT hosts a variety of functions to promote mental health and support for students. These include web based help lines on the university's home page that leads to various resources and a student mental health advisory committee.",
+        "Context": [
+            "The “Are You Okay?” button on the top banner of the university’s home page leads students through a series of questions to help them identify the options and resources, both on and off campus, that are available to offer them support.",
+            "The Student Mental Health Advisory Committee, comprised of student volunteers, organizes events and activities to promote positive health and well-being among students.",
+            "Student Mental Health Services offers a menu of brief, interactive presentations for instructors to add into their classes to help students learn practical strategies to support students’ mental health and academic success. Topics range from procrastination and time management, stress management, social media and gaming, test and presentation anxiety, resilience and self- reflection."
+        ],
+        "Content_Type": "MHS"
+    },
+    {
+        "Prompt": "What Anti-Stigma initiatives were there at Trent University?",
+        "Ground_Truth_Answer": "Trent University has had the centre for teaching and learning develop the postcard project, which aims to spread awareness, acceptence, and well being into academic cources. Additionally the university has a studnet group called \"Active minds\" that works to raise awareness about mental health. Finally, MPP Jeff Leal visted the student health services in 2016 to 2017 to raise awareness of campus health issues",
+        "Context": [
+            "The Centre for Teaching and Learning developed the postcard project. Four postcards about supporting student well-being are distributed to academic departments, promoting www. trentu.ca/wellness/classroom. The postcards, directed to faculty, included data from the National College Health Assessment and provided strategies for incorporating well-being into academic courses.",
+            "As well as the partnership with the student association, Trent has a student group, Active Minds, that works to raise awareness about mental health and encourage help-seeking on Trent campus. Students voted in support of providing funding for this group through a student fee levy.",
+            "MPP Jeff Leal visited Student Health Services in 2016 and 2017, raising awareness of campus health issues."
+        ],
+        "Content_Type": "MHS"
+    },
+    {
+        "Prompt": "What kind of training and professional development programs in regards to mental health are there at the University of Waterloo?",
+        "Ground_Truth_Answer": "The university of Waterloo's Counselling Services offers many training programs in mental health training such as QPR, SalfTalk, More feet on the Ground, Mental Health First Aid, and ASIST.",
+        "Context": [
+            "Counselling Services offers a broad range of suicide intervention and mental health training programs, raising mental health awareness, reducing stigmas, and supporting early intervention for those in need on campus. Training includes: QPR, SafeTalk, More Feet on the Ground (online and in-person), Mental Health First Aid, and Applied Suicide Intervention Skills Training (ASIST).",
+            "More Feet on the Ground, a training website that provides education on how to recognize, respond and refer a student in mental health distress, is available for the university community."
+        ],
+        "Content_Type":"MHS"
+    },
+    {
+        "Prompt": "Waht kind of community outreach programs are there at the university of Windsor.",
+        "Ground_Truth_Answer": "Every Fall and Winter semester, Therapeutic paws of Canada brings therapy dogs to campus to help student manage stress and academic pressures. The Staff at Windsor University's Studnet Councselling Centre have made presentations on a variety of mental health topics which have been promoted at various community partners such has Windsor Regional Hospital, and St. Clair College.",
+        "Context": [
+            "Each Fall and Winter semester, Therapeutic Paws of Canada brings certified therapy dogs to campus to spend time with students prior to exams as a way to help manage stress and academic pressures.",
+            "Staff from the Student Counselling Centre have made numerous presentations in the community on various mental health topics including: Mental Health 101; Suicide Prevention; Creating a Psychologically Healthy Workplace, and Stress Management, to name a few. Community partners that have requested such presentations include: Windsor Regional Hospital, Windsor Essex County Health Unit, Greater Essex County District School Board; Revenue Canada, City of Windsor, St. Clair College, and Chrysler Canada."
+        ],
+        "Content_Type": "MHS"
+    }
+]
