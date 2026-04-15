@@ -1,0 +1,53 @@
+[
+    {
+        "Prompt": "What is the total projected demand for university-educated workers in Ontario from 2021 to 2030?",
+        "Ground_Truth_Answer": "The total projected demand for university-educated workers in Ontario from 2021 to 2030 is 928,700 workers across 122 NOC skill level A occupations. Demand was highest in 2021 at 153,900 workers and declines to 81,100 by 2030.",
+        "Context": [
+            "Total demand for university-educated workers over the decade 2021–2030: 928,700 workers.",
+            "The study covers 122 occupations under NOC skill level A classification, where a university degree is usually required.",
+            "Year-by-year demand: 153,900 (2021), 105,200 (2022), 100,300 (2023), 92,200 (2024), 77,600 (2025), 74,100 (2026), 78,100 (2027), 81,900 (2028), 84,400 (2029), 81,100 (2030)."
+        ],
+        "Content_Type": "Future Labour Force Needs"
+    },
+    {
+        "Prompt": "Which occupational categories have the highest projected demand for university-educated workers in Ontario between 2021 and 2030?",
+        "Ground_Truth_Answer": "Management Occupations have the highest projected demand at 254,541 workers over the decade, averaging 25,454 per year. STEM Natural and Applied Sciences follow at 198,927 workers, and Education, Law, Social, Community and Government Services are projected at 178,505 workers.",
+        "Context": [
+            "Management Occupations: 254,541 total demand, average annual demand 25,454.",
+            "STEM Natural and Applied Sciences: 198,927 total demand, average annual demand 19,893.",
+            "Education, Law, Social, Community and Government Services: 178,505 total demand, average annual demand 17,851.",
+            "Health Occupations: 135,668 total demand, average annual demand 13,567.",
+            "Business, Finance and Administration: 127,709 total demand, average annual demand 12,771."
+        ],
+        "Content_Type": "Future Labour Force Needs"
+    },
+    {
+        "Prompt": "What is the projected demand for computer programmers and software engineers in Ontario from 2021 to 2030?",
+        "Ground_Truth_Answer": "The projected demand for computer programmers and software engineers in Ontario from 2021 to 2030 is 56,786 workers, making it the largest individual subgroup within STEM.",
+        "Context": [
+            "Computer programmers and software engineers: projected demand of 56,786 workers over 2021–2030.",
+            "STEM Natural and Applied Sciences total projected demand: 198,927 workers over 2021–2030."
+        ],
+        "Content_Type": "Future Labour Force Needs"
+    },
+    {
+        "Prompt": "What is the projected demand for registered nurses and physicians in Ontario from 2021 to 2030?",
+        "Ground_Truth_Answer": "Registered nurses have the highest projected demand within health occupations at 70,502 workers from 2021 to 2030. Physicians are projected at 24,283 workers over the same period, out of a total of 135,668 health occupation workers.",
+        "Context": [
+            "Registered nurses: projected demand of 70,502 workers over 2021–2030.",
+            "Physicians: projected demand of 24,283 workers over 2021–2030.",
+            "Health Occupations total projected demand: 135,668 workers over 2021–2030, average annual demand 13,567."
+        ],
+        "Content_Type": "Future Labour Force Needs"
+    },
+    {
+        "Prompt": "What is the economic impact of losing university-educated workers in Ontario?",
+        "Ground_Truth_Answer": "For every university-educated job lost in Ontario, an additional 0.81 jobs are lost elsewhere in the provincial economy. If 10,000 university-educated workers were lost in a single year, Ontario's GDP would fall by $2.35 billion and total employment would decline by 18,100 jobs.",
+        "Context": [
+            "Every university-educated job lost results in 0.81 additional jobs lost in the provincial economy.",
+            "If 10,000 university-educated workers were lost in a single year, GDP would fall by $2.35 billion.",
+            "A loss of 10,000 university-educated workers in a single year would lead to a decline of 18,100 total jobs across the province."
+        ],
+        "Content_Type": "Future Labour Force Needs"
+    }
+]
