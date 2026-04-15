@@ -8,7 +8,7 @@
             "Keep Me Safe is the university’s international student mental health support program. The program offers immediate access night or day. International students can talk to someone in their own language with a call, chat or email.",
             "The Student General Association (SGA) promotes and supports a twenty-four hour student benefits supported counselling service called Aspiria."
         ],
-        "Content_Type": "MHS"
+        "Content_Type": "Mental Health"
     },
     {
         "Prompt": "What kind of mental health services are there at UOIT?",
@@ -18,7 +18,7 @@
             "The Student Mental Health Advisory Committee, comprised of student volunteers, organizes events and activities to promote positive health and well-being among students.",
             "Student Mental Health Services offers a menu of brief, interactive presentations for instructors to add into their classes to help students learn practical strategies to support students’ mental health and academic success. Topics range from procrastination and time management, stress management, social media and gaming, test and presentation anxiety, resilience and self- reflection."
         ],
-        "Content_Type": "MHS"
+        "Content_Type": "Mental Health"
     },
     {
         "Prompt": "What Anti-Stigma initiatives were there at Trent University?",
@@ -28,7 +28,7 @@
             "As well as the partnership with the student association, Trent has a student group, Active Minds, that works to raise awareness about mental health and encourage help-seeking on Trent campus. Students voted in support of providing funding for this group through a student fee levy.",
             "MPP Jeff Leal visited Student Health Services in 2016 and 2017, raising awareness of campus health issues."
         ],
-        "Content_Type": "MHS"
+        "Content_Type": "Mental Health"
     },
     {
         "Prompt": "What kind of training and professional development programs in regards to mental health are there at the University of Waterloo?",
@@ -37,7 +37,7 @@
             "Counselling Services offers a broad range of suicide intervention and mental health training programs, raising mental health awareness, reducing stigmas, and supporting early intervention for those in need on campus. Training includes: QPR, SafeTalk, More Feet on the Ground (online and in-person), Mental Health First Aid, and Applied Suicide Intervention Skills Training (ASIST).",
             "More Feet on the Ground, a training website that provides education on how to recognize, respond and refer a student in mental health distress, is available for the university community."
         ],
-        "Content_Type":"MHS"
+        "Content_Type": "Mental Health"
     },
     {
         "Prompt": "Waht kind of community outreach programs are there at the university of Windsor.",
@@ -46,6 +46,6 @@
             "Each Fall and Winter semester, Therapeutic Paws of Canada brings certified therapy dogs to campus to spend time with students prior to exams as a way to help manage stress and academic pressures.",
             "Staff from the Student Counselling Centre have made numerous presentations in the community on various mental health topics including: Mental Health 101; Suicide Prevention; Creating a Psychologically Healthy Workplace, and Stress Management, to name a few. Community partners that have requested such presentations include: Windsor Regional Hospital, Windsor Essex County Health Unit, Greater Essex County District School Board; Revenue Canada, City of Windsor, St. Clair College, and Chrysler Canada."
         ],
-        "Content_Type": "MHS"
+        "Content_Type": "Mental Health"
     }
 ]
