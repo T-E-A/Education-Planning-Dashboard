@@ -1,0 +1,49 @@
+[
+    {
+        "Prompt": "What was the overall employment rate for Ontario university graduates two years after graduation?",
+        "Ground_Truth_Answer": "The overall employment rate for Ontario university graduates two years after graduation was 95.1%. The survey was conducted between January and August 2023, covering the 2020 graduation cohort, with 30,497 out of 81,003 students responding.",
+        "Context": [
+            "Overall employment rate two years after graduation: 95.1%",
+            "Survey conducted January to August 2023 for the 2020 graduation year.",
+            "81,003 Ontario university students surveyed, 30,497 responded."
+        ],
+        "Content_Type": "Graduate Survey"
+    },
+    {
+        "Prompt": "How do employment rates and average salaries compare six months versus two years after graduation for Ontario university graduates?",
+        "Ground_Truth_Answer": "Six months after graduation, the overall employment rate was 86.2% and the average salary was $52,262. Two years after graduation, the employment rate rose to 95.1% and the average salary increased to $64,136.",
+        "Context": [
+            "Overall employment rate six months after graduation: 86.2%",
+            "Overall employment rate two years after graduation: 95.1%",
+            "Average salary six months after graduation: $52,262",
+            "Average salary two years after graduation: $64,136"
+        ],
+        "Content_Type": "Graduate Survey"
+    },
+    {
+        "Prompt": "How closely did Ontario university graduates feel their jobs were related to the skills developed in their programs?",
+        "Ground_Truth_Answer": "Two years after graduation, 90.1% of Ontario university graduates reported their job was closely or somewhat related to the skills they developed in their program. Six months after graduation, this figure was 85.9%.",
+        "Context": [
+            "Skills match (closely/somewhat related to skills developed): 90.1% two years after graduation, 85.9% six months after graduation."
+        ],
+        "Content_Type": "Graduate Survey"
+    },
+    {
+        "Prompt": "What are the employment rates and average salaries for Computer Science graduates from Ontario universities?",
+        "Ground_Truth_Answer": "Computer Science graduates had an employment rate of 81.3% six months after graduation and 94.8% two years after graduation. Their average salary was $80,687 at six months and $95,957 two years after graduation.",
+        "Context": [
+            "Computer Science: Employment rate 81.3% six months after graduation, 94.8% two years after graduation.",
+            "Computer Science: Average salary $80,687 six months after graduation, $95,957 two years after graduation."
+        ],
+        "Content_Type": "Graduate Survey"
+    },
+    {
+        "Prompt": "What are the employment rates and average salaries for Engineering graduates from Ontario universities?",
+        "Ground_Truth_Answer": "Engineering graduates had an employment rate of 81.4% six months after graduation and 95.7% two years after graduation. Their average salary was $68,075 six months after graduation and $82,822 two years after graduation.",
+        "Context": [
+            "Engineering: Employment rate 81.4% six months after graduation, 95.7% two years after graduation.",
+            "Engineering: Average salary $68,075 six months after graduation, $82,822 two years after graduation."
+        ],
+        "Content_Type": "Graduate Survey"
+    }
+]
